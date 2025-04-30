@@ -2537,7 +2537,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import type { VantaEffect } from "../types/vanta";
 import dynamic from "next/dynamic";
-import { keyframes } from 'styled-components';
+import { keyframes } from '@emotion/react';
 
 // Add useScrollAnimation hook
 const useScrollAnimation = () => {

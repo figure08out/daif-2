@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { ChartBarIcon, CogIcon, ChartPieIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -22,13 +20,6 @@ interface Product {
   longDescription: string;
   icon: IconComponent;
   color: string;
-  videoSrc: string;
-}
-
-interface ProductDetailsProps {
-  key?: number;
-  title: string;
-  description: string;
   videoSrc: string;
 }
 
@@ -120,7 +111,7 @@ const ProductCard = ({ title, description, icon: Icon, color, isActive, onClick 
   );
 };
 
-const ProductDetails = ({ title, description, videoSrc }: ProductDetailsProps) => {
+const ProductDetails = ({ title, description, videoSrc }: { title: string; description: string; videoSrc: string }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -171,6 +162,8 @@ const ProductDetails = ({ title, description, videoSrc }: ProductDetailsProps) =
   );
 };
 
+const [activeProduct, setActiveProduct] = useState(0);
+
 const products: Product[] = [
   {
     title: "AI-Powered Analytics",
@@ -198,116 +191,110 @@ const products: Product[] = [
   }
 ];
 
-export default function Page() {
-  const [activeProduct, setActiveProduct] = useState(0);
-
-  return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
+{/* Our Products Section */}
+<section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ 
+      duration: 0.8,
+      type: "spring",
+      bounce: 0.4
+    }}
+    className="container mx-auto px-4"
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.6,
+        delay: 0.2,
+        type: "spring",
+        bounce: 0.3
+      }}
+      className="text-center mb-16"
+    >
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true }}
         transition={{ 
-          duration: 0.8,
+          duration: 0.6,
           type: "spring",
-          bounce: 0.4
+          bounce: 0.3
         }}
-        className="container mx-auto px-4"
+        className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-shimmer"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ 
-            duration: 0.6,
-            delay: 0.2,
-            type: "spring",
-            bounce: 0.3
-          }}
-          className="text-center mb-16"
-        >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ 
-              duration: 0.6,
-              type: "spring",
-              bounce: 0.3
-            }}
-            className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-shimmer"
-          >
-            Our Products
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ 
-              duration: 0.6,
-              delay: 0.2,
-              type: "spring",
-              bounce: 0.3
-            }}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
-          >
-            Discover our suite of AI-powered solutions designed to transform your business
-          </motion.p>
-        </motion.div>
-        
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <ProductDetails
-              key={activeProduct}
-              title={products[activeProduct].title}
-              description={products[activeProduct].longDescription}
-              videoSrc={products[activeProduct].videoSrc}
-            />
-          </AnimatePresence>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ 
-              duration: 0.5,
-              delay: 0.3,
-              staggerChildren: 0.2
-            }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {products.map((product, index) => (
-              <ProductCard
-                key={index}
-                title={product.title}
-                description={product.description}
-                icon={product.icon}
-                color={product.color}
-                isActive={index === activeProduct}
-                onClick={() => setActiveProduct(index)}
-              />
-            ))}
-          </motion.div>
-          
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setActiveProduct((prev) => (prev - 1 + products.length) % products.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setActiveProduct((prev) => (prev + 1) % products.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <ChevronRightIcon className="w-6 h-6 text-gray-600" />
-          </motion.button>
-        </div>
+        Our Products
+      </motion.h2>
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ 
+          duration: 0.6,
+          delay: 0.2,
+          type: "spring",
+          bounce: 0.3
+        }}
+        className="text-xl text-gray-600 max-w-2xl mx-auto"
+      >
+        Discover our suite of AI-powered solutions designed to transform your business
+      </motion.p>
+    </motion.div>
+    
+    <div className="relative">
+      <AnimatePresence mode="wait">
+        <ProductDetails
+          title={products[activeProduct].title}
+          description={products[activeProduct].longDescription}
+          videoSrc={products[activeProduct].videoSrc}
+        />
+      </AnimatePresence>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ 
+          duration: 0.5,
+          delay: 0.3,
+          staggerChildren: 0.2
+        }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+      >
+        {products.map((product, index) => (
+          <ProductCard
+            key={index}
+            title={product.title}
+            description={product.description}
+            icon={product.icon}
+            color={product.color}
+            isActive={index === activeProduct}
+            onClick={() => setActiveProduct(index)}
+          />
+        ))}
       </motion.div>
-    </section>
-  );
-} 
+      
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setActiveProduct((prev) => (prev - 1 + products.length) % products.length)}
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+      >
+        <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
+      </motion.button>
+      
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setActiveProduct((prev) => (prev + 1) % products.length)}
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white p-2 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+      >
+        <ChevronRightIcon className="w-6 h-6 text-gray-600" />
+      </motion.button>
+    </div>
+  </motion.div>
+</section> 
