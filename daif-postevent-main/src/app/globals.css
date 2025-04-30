@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+  }
+  
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px -5px rgba(138, 43, 226, 0.2);
+    }
+    to {
+      box-shadow: 0 0 15px 5px rgba(138, 43, 226, 0.4);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(64px) scale(0.92); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .connection-card {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .connection-card:hover {
+    transform: scale(1.07) translateY(-4px);
+    box-shadow: 0 8px 32px 0 rgba(80, 120, 255, 0.25), 0 0 0 2px #3b82f6;
+  }
+  .map-dot {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #3b82f6;
+    box-shadow: 0 0 16px 4px #3b82f6aa;
+    opacity: 0.85;
+    pointer-events: auto;
+    animation: dotMove 2.5s ease-in-out infinite alternate, dotPulse 1.2s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 16px 4px #3b82f6aa; opacity: 0.85; }
+    50% { box-shadow: 0 0 32px 12px #3b82f6cc; opacity: 1; }
+  }
+  @keyframes dotMove {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, -3px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(3px, 2px); }
+    100% { transform: translate(-2px, -2px); }
+  }
+  .map-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: 130%;
+    transform: translateX(-50%);
+    background: #10111a;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px #3b82f6aa;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  .map-dot:hover .map-tooltip {
+    opacity: 1;
+  }
+  @keyframes floatDot {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.08); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  .animate-float-dot {
+    animation: floatDot 4s ease-in-out infinite alternate;
+  }
+}
