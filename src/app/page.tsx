@@ -899,7 +899,7 @@ export default function Home() {
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
                 <TypingText 
-                  text=Coming from an account management role in the UK, I was so happy to find a tool like MCG — it’s perfect for someone new to the UAE and exploring new career paths." 
+                  text="Coming from an account management role in the UK, I was so happy to find a tool like MCG — it is perfect for someone new to the UAE and exploring new career paths." 
                   speed={30} 
                   delay={600} 
                 />
