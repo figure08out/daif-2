@@ -390,7 +390,7 @@ export default function Home() {
         { title: "Reportr", desc: "Advanced analytics and reporting" },
         { title: "Recommendr", desc: "Smart recommendation system" },
       ],
-      video: "/sinx.mp4" // Use SinX video from public folder
+      video: "SinX.mp4"
     },
     {
       name: "My Career Growth",
@@ -402,7 +402,7 @@ export default function Home() {
         { title: "1:1 Mock Interview", desc: "Practice with AI for real interview scenarios" },
         { title: "Smart Job Search", desc: "Find jobs tailored to your skills and goals" },
       ],
-      video: "/mcg.mp4"
+      video: "MCG.mp4"
     },
     {
       name: "Knowtice",
@@ -414,7 +414,7 @@ export default function Home() {
         { title: "Intelligent Filtering", desc: "Automatically filter out noise and focus on quality content for you." },
         { title: "Audience Segmentation", desc: "Deliver targeted content to specific audience segments for better engagement." },
       ],
-      video: "/knowtice.mp4" // Use Knowtice video from public folder
+      video: "Knowtice.mp4"
     }
   ];
   // ... inside Home component, at the top ...image.png
@@ -667,15 +667,38 @@ export default function Home() {
                     </div>
                 {/* Right: Product Video */}
                 <div className="rounded-xl overflow-hidden shadow-lg border border-blue-900/30 bg-black/40 w-full">
-                  {product.video.startsWith('http') ? (
-                    <iframe width="100%" height="220" src={product.video} title={product.name + " Demo"} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-56"></iframe>
+                  {product.video ? (
+                    <div className="relative aspect-video">
+                      <video
+                        key={product.video}
+                        width="100%"
+                        height="100%"
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        controls
+                        preload="metadata"
+                      >
+                        <source src={`/${product.video}`} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                          <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
                   ) : (
-                    <video key={product.video} width="100%" height="360" className="w-full h-80 bg-black" autoPlay muted loop playsInline>
-                      <source src={product.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <div className="aspect-video flex items-center justify-center bg-black/20">
+                      <p className="text-white/50">No video available</p>
+                    </div>
                   )}
-                  </div>
+                </div>
                 </div>
             );
           })()}
