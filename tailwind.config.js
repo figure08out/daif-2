@@ -15,9 +15,13 @@ module.exports = {
       animation: {
         'shimmer': 'shimmer 8s ease-in-out infinite',
         'float-dot': 'float 3s ease-in-out infinite',
+        'float': 'float 10s ease-in-out infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
+        'float-slower': 'float 12s ease-in-out infinite',
         'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
         'gradient-x': 'gradient-x 15s ease infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slower': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glow': 'glow 3s ease-in-out infinite alternate',
         'spin-slow': 'spin 30s linear infinite',
       },
@@ -34,12 +38,11 @@ module.exports = {
           },
         },
         float: {
-          '0%, 100%': {
-            transform: 'translateY(0)',
-          },
-          '50%': {
-            transform: 'translateY(-10px)',
-          },
+          '0%': { transform: 'translateY(0px) translateX(0px)' },
+          '25%': { transform: 'translateY(-10px) translateX(5px)' },
+          '50%': { transform: 'translateY(0px) translateX(10px)' },
+          '75%': { transform: 'translateY(10px) translateX(5px)' },
+          '100%': { transform: 'translateY(0px) translateX(0px)' },
         },
         fadeInUp: {
           '0%': {
@@ -52,8 +55,8 @@ module.exports = {
           },
         },
         pulse: {
-          '0%, 100%': { opacity: 1, transform: 'scale(1)' },
-          '50%': { opacity: 0.9, transform: 'scale(1.03)' },
+          '0%, 100%': { opacity: 0.3 },
+          '50%': { opacity: 0.6 },
         },
         glow: {
           'from': { boxShadow: '0 0 5px -5px rgba(138, 43, 226, 0.2)' },

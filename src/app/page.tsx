@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
-import type { VantaEffect } from "../types/vanta";
 import dynamic from "next/dynamic";
 
 // Add useScrollAnimation hook
@@ -42,7 +41,8 @@ interface CountUpProps {
   end: number;
   duration?: number;
   suffix?: string;
-  [key: string]: any;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 // Update the CountUp component to include entry animation
@@ -246,7 +246,8 @@ interface TypingTextProps {
   text: string;
   speed?: number;
   delay?: number;
-  [key: string]: any;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 // Update the TypingText component to include entry animation
@@ -300,77 +301,6 @@ function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps)
   );
 }
 
-// First, add these animation keyframes at the top of the file after imports
-const floatAnimation = `
-  @keyframes float {
-    0% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-10px) translateX(5px); }
-    50% { transform: translateY(0px) translateX(10px); }
-    75% { transform: translateY(10px) translateX(5px); }
-    100% { transform: translateY(0px) translateX(0px); }
-  }
-`;
-
-const pulseAnimation = `
-  @keyframes subtle-pulse {
-    0% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-    100% { opacity: 0.3; }
-  }
-`;
-
-const rotateAnimation = `
-  @keyframes slow-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-`;
-
-// Add this component for animated background elements
-const AnimatedBackground = ({ isVisible }: { isVisible: boolean }) => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Floating Elements with more pronounced animations */}
-      <div 
-        className={`absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full transition-all duration-1000 ease-out-back
-          animate-[float_8s_ease-in-out_infinite] 
-          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      />
-      <div 
-        className={`absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full transition-all duration-1000 ease-out-back
-          animate-[float_12s_ease-in-out_infinite] 
-          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      />
-      <div 
-        className={`absolute bottom-1/4 left-1/3 w-48 h-48 bg-indigo-500/10 rounded-full transition-all duration-1000 ease-out-back
-          animate-[float_10s_ease-in-out_infinite] 
-          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      />
-
-      {/* Pulsing Elements with more pronounced effects */}
-      <div 
-        className={`absolute top-1/2 right-1/3 w-32 h-32 bg-blue-400/10 rounded-full transition-all duration-1000 ease-out-back
-          animate-[pulse_3s_ease-in-out_infinite] 
-          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      />
-      <div 
-        className={`absolute bottom-1/3 right-1/2 w-24 h-24 bg-purple-400/10 rounded-full transition-all duration-1000 ease-out-back
-          animate-[pulse_4s_ease-in-out_infinite] 
-          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      />
-
-      {/* Rotating Gradient with more pronounced effect */}
-      <div 
-        className={`absolute top-1/4 right-1/4 w-[800px] h-[800px] transition-all duration-1000 ease-out-back
-          animate-[spin_20s_linear_infinite] 
-          ${isVisible ? 'opacity-30 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-transparent rounded-full" />
-      </div>
-    </div>
-  );
-};
-
 // Add SectionHeading component definition
 const SectionHeading = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -401,6 +331,45 @@ const SectionHeading = ({ children, className = "", delay = 0 }: { children: Rea
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
+    </div>
+  );
+};
+
+// Add AnimatedBackground component with Tailwind classes
+const AnimatedBackground = ({ isVisible }: { isVisible: boolean }) => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating Elements */}
+      <div 
+        className={`absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full transition-all duration-1000 ease-out-back animate-float-slow
+          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      />
+      <div 
+        className={`absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full transition-all duration-1000 ease-out-back animate-float-slower
+          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      />
+      <div 
+        className={`absolute bottom-1/4 left-1/3 w-48 h-48 bg-indigo-500/10 rounded-full transition-all duration-1000 ease-out-back animate-float
+          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      />
+
+      {/* Pulsing Elements */}
+      <div 
+        className={`absolute top-1/2 right-1/3 w-32 h-32 bg-blue-400/10 rounded-full transition-all duration-1000 ease-out-back animate-pulse-slow
+          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      />
+      <div 
+        className={`absolute bottom-1/3 right-1/2 w-24 h-24 bg-purple-400/10 rounded-full transition-all duration-1000 ease-out-back animate-pulse-slower
+          ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      />
+
+      {/* Rotating Gradient */}
+      <div 
+        className={`absolute top-1/4 right-1/4 w-[800px] h-[800px] transition-all duration-1000 ease-out-back animate-spin-slow
+          ${isVisible ? 'opacity-30 scale-100' : 'opacity-0 scale-75 translate-y-20'}`}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-transparent rounded-full" />
+      </div>
     </div>
   );
 };
@@ -672,7 +641,13 @@ export default function Home() {
                 <div className="flex flex-col gap-4 items-start">
                   <div className="flex items-center gap-4">
                     <h3 className="text-2xl font-bold text-blue-400">{product.name}</h3>
-                    <img src={product.logo} alt={product.name + ' logo'} className="h-8 w-auto ml-auto" />
+                    <Image
+                      src={product.logo}
+                      alt={product.name + ' logo'}
+                      width={32}
+                      height={32}
+                      className="h-8 w-auto ml-auto"
+                    />
             </div>
                   <p className="text-blue-300 mb-2">{product.description}</p>
                   <div>
