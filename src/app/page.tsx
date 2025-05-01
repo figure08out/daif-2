@@ -653,8 +653,13 @@ export default function Home() {
                       onClick={() => setSelected(idx)}
                       className={`flex items-center gap-4 p-4 rounded-lg w-full text-left transition border border-transparent transform-gpu ${selected === idx ? "bg-[#18182a] border-blue-500 shadow-lg scale-105" : "hover:bg-[#18182a] hover:scale-105 hover:shadow-xl"}`}
                     >
-                      {/* Remove background from logo container */}
-                      <img src={p.logo} alt={p.name + ' logo'} className="h-10 w-10 object-contain rounded" />
+                      <Image
+                        src={p.logo}
+                        alt={p.name + ' logo'}
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 object-contain rounded"
+                      />
                       <div>
                         <div className="text-white font-bold text-lg">{p.name}</div>
                         <div className="text-blue-400 text-sm">{p.description}</div>
@@ -672,7 +677,7 @@ export default function Home() {
                   <div>
                     <div className="font-bold text-white mb-2">Key Features</div>
                     <ul className="text-white space-y-2 pl-4 list-disc">
-                      {product.features.map((f, i) => (
+                      {product.features.map((f) => (
                         <li key={f.title}><span className="font-semibold text-blue-300">{f.title}:</span> {f.desc}</li>
                       ))}
                     </ul>
@@ -740,7 +745,7 @@ export default function Home() {
                 <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mb-8 rounded-full"></div>
 
                 <p className="text-white leading-relaxed mb-6 text-lg">
-                  At the Dubai AI Festival, SinX Solutions proudly unveiled <span className="text-purple-400 font-semibold">My Career Growth</span> (MCG)—an AI-powered platform designed to transform how professionals navigate their careers. MCG empowers users with personalized, AI-driven tools for resume building, career roadmaps, skill gap analysis, and mock interviews.
+                  At the Dubai AI Festival, SinX Solutions proudly unveiled <span className="text-purple-400 font-semibold">My Career Growth</span> (MCG)&mdash;an AI-powered platform designed to transform how professionals navigate their careers. MCG empowers users with personalized, AI-driven tools for resume building, career roadmaps, skill gap analysis, and mock interviews.
                 </p>
 
                 <p className="text-white leading-relaxed mb-10 text-lg">
@@ -948,7 +953,13 @@ export default function Home() {
                 style={{ animationDelay: `${idx * 0.1 + 0.2}s`, animationFillMode: 'forwards' }}
               >
                 <div className="w-20 h-20 md:w-28 md-28 flex items-center justify-center mb-3 md:mb-4">
-                  <img src={company.logo} alt={company.name + ' logo'} className="max-h-16 md:max-h-24 max-w-full object-contain" />
+                  <Image
+                    src={company.logo}
+                    alt={company.name + ' logo'}
+                    width={64}
+                    height={96}
+                    className="max-h-16 md:max-h-24 max-w-full object-contain"
+                  />
                     </div>
                 <div className="text-center text-white text-xs md:text-sm font-medium truncate w-full">{company.name}</div>
                       </div>
@@ -1070,11 +1081,11 @@ export default function Home() {
               <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-8 rounded-full"></div>
 
               <p className="text-white/90 leading-relaxed mb-5 text-lg">
-                Next up, SinX Solutions is making bold strides with <span className="text-blue-400 font-medium">Invisibl AI</span> and <span className="text-purple-400 font-medium">Intelligence OS</span>. We&apos;re also excited to announce our move to the Dubai AI Campus—a new hub for innovation and collaboration.
+                Next up, SinX Solutions is making bold strides with <span className="text-blue-400 font-medium">Invisibl AI</span> and <span className="text-purple-400 font-medium">Intelligence OS</span>. We&apos;re also excited to announce our move to the Dubai AI Campus&mdash;a new hub for innovation and collaboration.
               </p>
 
               <p className="text-white/90 leading-relaxed mb-8 text-lg">
-                We&apos;re committed to making intelligence accessible, seamless, and truly human-first—empowering businesses and individuals to harness the full potential of AI with ease. Stay tuned for new launches and innovations that will redefine how you experience and interact with artificial intelligence.
+                We&apos;re committed to making intelligence accessible, seamless, and truly human-first&mdash;empowering businesses and individuals to harness the full potential of AI with ease. Stay tuned for new launches and innovations that will redefine how you experience and interact with artificial intelligence.
               </p>
 
               <div className="mt-auto flex flex-wrap gap-4">
