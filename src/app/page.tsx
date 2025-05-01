@@ -1001,7 +1001,7 @@ export default function Home() {
             </div>
           </div>
               <div className="text-white mb-4 text-base leading-relaxed">
-                The buzz around SinX Solutions, Knowtice AI, and MyCareerGrowth was unreal at <span className="text-blue-300">#DubaiAIFestival</span>. Non-stop demos, and more!!<br />This is just a glimpse of what we're building. 🚀
+                The buzz around SinX Solutions, Knowtice AI, and MyCareerGrowth was unreal at <span className="text-blue-300">#DubaiAIFestival</span>. Non-stop demos, and more!!<br />This is just a glimpse of what we&apos;re building. 🚀
         </div>
               <div className="text-blue-300 text-xs mb-4">
                 #SinXSolutions #KnowticeAI #MyCareerGrowth
