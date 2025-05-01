@@ -253,6 +253,7 @@ interface TypingTextProps {
 function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps) {
   const [displayed, setDisplayed] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [id] = useState(() => `typing-text-${Math.random().toString(36).substr(2, 9)}`);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -267,11 +268,11 @@ function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps)
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('typing-text');
+    const element = document.getElementById(id);
     if (element) observer.observe(element);
 
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, id]);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -289,7 +290,7 @@ function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps)
   
   return (
     <span 
-      id="typing-text"
+      id={id}
       className={`transform transition-all duration-1000 ease-out-back ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-95'}`}
       style={{ transitionDelay: `${delay}ms` }}
       {...props}
