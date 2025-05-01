@@ -758,7 +758,7 @@ export default function Home() {
                   The launch drew crowds and sparked conversations about the future of work, with attendees experiencing firsthand how MCG makes career development smarter, faster, and more accessible for everyone.
                 </p>
 
-                <div className="flex justify-center mt-10">
+{/*                 <div className="flex justify-center mt-10">
             <Link
                     href="/icymi"
                     className="inline-flex items-center px-8 py-3 rounded-full relative overflow-hidden group"
@@ -772,7 +772,7 @@ export default function Home() {
                 </svg>
               </span>
             </Link>
-                  </div>
+                  </div> */}
                 </div>
             </article>
           </div>
