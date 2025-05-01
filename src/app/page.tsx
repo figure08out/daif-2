@@ -251,7 +251,7 @@ interface TypingTextProps {
 }
 
 // Update the TypingText component to include entry animation
-function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps) {
+function TypingText({ text, speed = 50, delay = 0, ...props }: TypingTextProps) {
   const [displayed, setDisplayed] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [id] = useState(() => `typing-text-${Math.random().toString(36).substr(2, 9)}`);
@@ -260,34 +260,36 @@ function TypingText({ text, speed = 100, delay = 0, ...props }: TypingTextProps)
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
+          setIsVisible(true);
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
     const element = document.getElementById(id);
     if (element) observer.observe(element);
 
     return () => observer.disconnect();
-  }, [delay, id]);
+  }, [id]);
 
   useEffect(() => {
+    if (!isVisible) return;
+    
     let timeout: NodeJS.Timeout;
+    let currentIndex = 0;
     
     function type() {
-      if (displayed.length < text.length) {
-        timeout = setTimeout(() => {
-          setDisplayed(text.slice(0, displayed.length + 1));
-        }, speed);
+      if (currentIndex < text.length) {
+        setDisplayed(text.slice(0, currentIndex + 1));
+        currentIndex++;
+        timeout = setTimeout(type, speed);
       }
     }
+    
     const start = setTimeout(type, delay);
     return () => { clearTimeout(timeout); clearTimeout(start); };
-  }, [text, speed, delay, displayed]);
+  }, [text, speed, delay, isVisible]);
   
   return (
     <span 
@@ -871,30 +873,30 @@ export default function Home() {
             <div className="connection-card bg-[#151525] rounded-xl border border-indigo-900/40 p-8 flex flex-col shadow-lg opacity-0 translate-y-6 animate-fadeInUp" style={{ animationDelay: `0.2s`, animationFillMode: 'forwards' }}>
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
-                <TypingText text="SinX was one of five companies we were recommended to meet at this event — they stood out for all the right reasons." speed={5} delay={100} />
-                              </div>
+                <TypingText text="The AI-powered personalization engine has been a game-changer for our retail operations. We've seen a 45% increase in customer engagement and a 28% boost in conversion rates." speed={30} delay={100} />
+              </div>
               <div className="flex items-center gap-3 mt-auto">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl">
-                  D
-                          </div>
+                  S
+                </div>
                 <div>
-                  <div className="text-gray-400 text-sm">Founder, Delta Wealth Partners</div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="text-gray-400 text-sm">CEO, Delta Wealth Partners</div>
+                </div>
+              </div>
+            </div>
 
             {/* Testimonial 2 */}
             <div className="connection-card bg-[#151525] rounded-xl border border-indigo-900/40 p-8 flex flex-col shadow-lg opacity-0 translate-y-6 animate-fadeInUp" style={{ animationDelay: `0.3s`, animationFillMode: 'forwards' }}>
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
-                <TypingText text="As someone who worked as an account manager in the UK, I was elated to find how useful MCG is — it's exactly the kind of tool someone new to the UAE job market needs when trying to pivot." speed={5} delay={200} />
-                      </div>
+                <TypingText text="My Career Growth's AI-driven career pathing has helped us retain top talent and reduce turnover by 40%. The platform's insights are invaluable for our HR strategy." speed={30} delay={100} />
+              </div>
               <div className="flex items-center gap-3 mt-auto">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl">
-                  R
-                    </div>
+                  A
+                </div>
                 <div>
-                  <div className="text-gray-400 text-sm">Former Account Manager</div>
+                  <div className="text-gray-400 text-sm">HR Director, THE RWS GROUP</div>
                 </div>
               </div>
             </div>
@@ -903,18 +905,17 @@ export default function Home() {
             <div className="connection-card bg-[#151525] rounded-xl border border-indigo-900/40 p-8 flex flex-col shadow-lg opacity-0 translate-y-6 animate-fadeInUp" style={{ animationDelay: `0.4s`, animationFillMode: 'forwards' }}>
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
-                <TypingText text="Intelligence OS has transformed how we handle personalization and bundling. Our AOV increased by 32% within the first month of implementation. The ROI speaks for itself." speed={5} delay={300} />
-                      </div>
+                <TypingText text="Intelligence OS has transformed how we handle personalization and bundling. Our AOV increased by 32% within the first month of implementation. The ROI speaks for itself." speed={30} delay={100} />
+              </div>
               <div className="flex items-center gap-3 mt-auto">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl">
                   M
-                    </div>
-                      <div>
+                </div>
+                <div>
                   <div className="text-gray-400 text-sm">Head of E-commerce, Majid Al Futtaim Retail</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                </div>
+              </div>
+            </div>
         </div>
       </section>
 
