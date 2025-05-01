@@ -471,7 +471,7 @@ export default function Home() {
             Social Media
           </Link>
           <Link href="#whatsnext" className="text-white hover:text-purple-300 transition-colors relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300 hover:after:w-full">
-            What's Next
+            What&apos;s Next
           </Link>
           <Link href="#feedback" className="text-white hover:text-purple-300 transition-colors relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300 hover:after:w-full">
             Feedback
@@ -1321,7 +1321,7 @@ export default function Home() {
                     Social Media
                   </Link>
                   <Link href="#whatsnext" className="text-gray-300 hover:text-purple-300 transition-colors relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300 hover:after:w-full">
-                    What's Next
+                    What&apos;s Next
                   </Link>
                   <Link href="#feedback" className="text-gray-300 hover:text-purple-300 transition-colors relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-purple-400 after:transition-all after:duration-300 hover:after:w-full">
                     Feedback
