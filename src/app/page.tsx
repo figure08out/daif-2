@@ -867,7 +867,7 @@ export default function Home() {
             <SectionHeading>
               <p className="text-gray-400 max-w-2xl mx-auto">Hear how SinX is changing the game for global leaders and pioneers</p>
             </SectionHeading>
-                                </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
             <div className="connection-card bg-[#151525] rounded-xl border border-indigo-900/40 p-8 flex flex-col shadow-lg opacity-0 translate-y-6 animate-fadeInUp" style={{ animationDelay: `0.2s`, animationFillMode: 'forwards' }}>
@@ -916,6 +916,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </section>
 
