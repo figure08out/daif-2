@@ -879,7 +879,7 @@ export default function Home() {
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
                 <TypingText 
-                  text="The AI-powered personalization engine has been a game-changer for our retail operations. We've seen a 45% increase in customer engagement and a 28% boost in conversion rates." 
+                  text="SinX was one of five companies we were recommended to meet — they stood out for all the right reasons." 
                   speed={30} 
                   delay={300} 
                 />
@@ -899,7 +899,7 @@ export default function Home() {
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
                 <TypingText 
-                  text="My Career Growth's AI-driven career pathing has helped us retain top talent and reduce turnover by 40%. The platform's insights are invaluable for our HR strategy." 
+                  text=Coming from an account management role in the UK, I was so happy to find a tool like MCG — it’s perfect for someone new to the UAE and exploring new career paths." 
                   speed={30} 
                   delay={600} 
                 />
@@ -919,7 +919,7 @@ export default function Home() {
               <div className="text-blue-400 text-3xl mb-4">&ldquo;</div>
               <div className="text-white text-lg font-medium mb-6">
                 <TypingText 
-                  text="Intelligence OS has transformed how we handle personalization and bundling. Our AOV increased by 32% within the first month of implementation. The ROI speaks for itself." 
+                  text="Stopping by the SinX booth felt less like a pitch and more like a meaningful exchange — they understood what we were looking for before we even said it." 
                   speed={30} 
                   delay={900} 
                 />
